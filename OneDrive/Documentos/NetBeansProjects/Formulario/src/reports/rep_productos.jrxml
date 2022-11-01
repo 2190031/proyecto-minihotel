@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3d7f3cf1-d1d7-47bd-ba84-d9015527ff36">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     producto.`id_producto` AS producto_id_producto,
+     producto.`nombre_producto` AS producto_nombre_producto,
+     producto.`presentacion` AS producto_presentacion,
+     producto.`cant_disponible` AS producto_cant_disponible,
+     producto.`id_categoria` AS producto_id_categoria,
+     producto.`unidad_precio` AS producto_unidad_precio,
+     producto.`puntos_producto` AS producto_puntos_producto,
+     categoria.`id_categoria` AS categoria_id_categoria,
+     categoria.`nombre_categoria` AS categoria_nombre_categoria,
+     categoria.`descripcion` AS categoria_descripcion
+FROM
+     `categoria` categoria INNER JOIN `producto` producto ON categoria.`id_categoria` = producto.`id_categoria`]]>
+	</queryString>
+	<field name="producto_id_producto" class="java.lang.Integer"/>
+	<field name="producto_nombre_producto" class="java.lang.String"/>
+	<field name="producto_presentacion" class="java.lang.String"/>
+	<field name="producto_cant_disponible" class="java.lang.Integer"/>
+	<field name="producto_id_categoria" class="java.lang.Integer"/>
+	<field name="producto_unidad_precio" class="java.lang.Float"/>
+	<field name="producto_puntos_producto" class="java.lang.Float"/>
+	<field name="categoria_id_categoria" class="java.lang.Integer"/>
+	<field name="categoria_nombre_categoria" class="java.lang.String"/>
+	<field name="categoria_descripcion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="103" splitType="Stretch">
+			<image>
+				<reportElement x="15" y="13" width="90" height="90" uuid="a9355ac3-b17b-4af5-9c7c-dc98c41fdbb6"/>
+				<imageExpression><![CDATA["C:\\Users\\maxim\\OneDrive\\Documentos\\NetBeansProjects\\Formulario\\src\\reports\\logo.png"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement mode="Opaque" x="149" y="24" width="654" height="66" forecolor="#AA0000" backcolor="#AA0000" uuid="9f3cf9ae-75ed-4dbd-864b-347f3b5052ee"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="177" y="24" width="306" height="55" forecolor="#FFFFFF" uuid="4e8a4a66-f55b-4786-9adc-9999e1bbe17f"/>
+				<textElement>
+					<font fontName="Corbel Light" size="44" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Productos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="1" y="10" width="802" height="34" forecolor="#AA0000" backcolor="#AA0000" uuid="7dacd1eb-be2b-4dc9-96ce-9c4a7cc85d69"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="213" y="10" width="146" height="34" forecolor="#FFFFFF" uuid="e4bc5ae3-e8f3-494f-88b4-2cf1258fdb29"/>
+				<textElement>
+					<font fontName="Corbel Light" size="22" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Presentación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="10" width="55" height="34" forecolor="#FFFFFF" uuid="4c4b6c71-a83c-49bc-8e63-887575586db3"/>
+				<textElement>
+					<font fontName="Corbel Light" size="22" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="483" y="10" width="99" height="34" forecolor="#FFFFFF" uuid="68aedb2b-319d-46eb-a9ff-b4487ca2fd79"/>
+				<textElement>
+					<font fontName="Corbel Light" size="22" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Categoría]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="10" width="90" height="34" forecolor="#FFFFFF" uuid="5f91b881-5122-48fa-a65f-5b33a3d84b80"/>
+				<textElement>
+					<font fontName="Corbel Light" size="22" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="10" width="94" height="34" forecolor="#FFFFFF" uuid="c2f9a409-015a-4976-a0c4-4003ea87d60b"/>
+				<textElement>
+					<font fontName="Corbel Light" size="22" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="10" width="101" height="34" forecolor="#FFFFFF" uuid="09b9148e-1db3-4ed7-bab1-18ee53ef6b9c"/>
+				<textElement>
+					<font fontName="Corbel Light" size="22" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="10" width="90" height="34" forecolor="#FFFFFF" uuid="7e2e6055-18a6-430d-9f26-dad55c9ee4bc"/>
+				<textElement>
+					<font fontName="Corbel Light" size="22" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Puntos]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField pattern="###0">
+				<reportElement x="371" y="0" width="100" height="26" uuid="e2274a14-9d66-4043-b257-e26c5471bdcf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_cant_disponible}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="0" width="146" height="26" uuid="e85beba6-8a7d-4977-b878-f59859e9321e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_presentacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="36" y="0" width="55" height="26" uuid="054e3b0f-5633-4cf9-9020-79f2a8cfa219"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_id_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="0" width="94" height="26" uuid="2ba729ae-bf0b-4fee-bfe3-576ffd6dc936"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_nombre_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="483" y="0" width="99" height="26" uuid="0fbb141c-d0cb-4565-bdf4-ef007859f4fe"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{categoria_nombre_categoria}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="602" y="0" width="88" height="26" uuid="5a5c606d-9f16-4358-8c25-109ca1527779"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_unidad_precio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="702" y="0" width="88" height="26" uuid="479066cf-bf0c-431a-9966-3605e0f1e32a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_puntos_producto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="92" y="23" width="22" height="17" uuid="e96012fd-7a28-47cd-912b-c69f2d95bc34"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="23" width="26" height="17" uuid="678a515c-bb33-4654-b470-35b2486535c2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="49" y="23" width="43" height="17" forecolor="#666666" uuid="3dcbfb1b-5289-40da-be22-67eb722f4d74"/>
+				<textElement>
+					<font fontName="Corbel Light" size="14" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Página ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="23" width="18" height="17" forecolor="#666666" uuid="3ec3ae2f-5143-4d48-8968-45010df1eec8"/>
+				<textElement>
+					<font fontName="Corbel Light" size="14" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[de ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="625" y="23" width="163" height="17" uuid="6df9eab3-fbbf-4a05-85e5-c5fc446c7664"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="549" y="23" width="76" height="17" forecolor="#666666" uuid="6bda6e76-ddcf-4fc2-9472-659114e37947"/>
+				<textElement>
+					<font fontName="Corbel Light" size="14" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Generado el:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

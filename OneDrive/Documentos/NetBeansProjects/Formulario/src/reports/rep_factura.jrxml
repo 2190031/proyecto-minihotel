@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3d178441-8e7a-4d75-8759-383997be3006">
+	<property name="ireport.zoom" value="1.6105100000000054"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="109"/>
+	<subDataset name="dataset1" uuid="9938eed0-d373-4bce-a6e4-2c3b3b806131"/>
+	<parameter name="id_fact" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     cliente.`id_cliente` AS cliente_id_cliente,
+     cliente.`nombre` AS cliente_nombre,
+     cliente.`dni` AS cliente_dni,
+     detalle_factura.`id_detalle` AS detalle_factura_id_detalle,
+     detalle_factura.`id_factura` AS detalle_factura_id_factura,
+     detalle_factura.`id_producto` AS detalle_factura_id_producto,
+     detalle_factura.`cantidad_vendida` AS detalle_factura_cantidad_vendida,
+     detalle_factura.`importe` AS detalle_factura_importe,
+     empleado.`Id_empleado` AS empleado_Id_empleado,
+     empleado.`apellido_empleado` AS empleado_apellido_empleado,
+     factura.`id_factura` AS factura_id_factura,
+     factura.`id_cliente` AS factura_id_cliente,
+     factura.`id_empleado` AS factura_id_empleado,
+     factura.`NCF` AS factura_NCF,
+     factura.`DNI` AS factura_DNI,
+     factura.`tipo_pago` AS factura_tipo_pago,
+     factura.`documento_transaccional` AS factura_documento_transaccional,
+     factura.`Subtotal` AS factura_Subtotal,
+     factura.`ITBIS` AS factura_ITBIS,
+     factura.`Total` AS factura_Total,
+     factura.`estado_factura` AS factura_estado_factura,
+     producto.`id_producto` AS producto_id_producto,
+     producto.`nombre_producto` AS producto_nombre_producto,
+     producto.`presentacion` AS producto_presentacion,
+     producto.`unidad_precio` AS producto_unidad_precio,
+     empleado.`nombre_empleado` AS empleado_nombre_empleado
+FROM
+     `cliente` cliente INNER JOIN `factura` factura ON cliente.`id_cliente` = factura.`id_cliente`
+     INNER JOIN `empleado` empleado ON factura.`id_empleado` = empleado.`Id_empleado`
+     INNER JOIN `detalle_factura` detalle_factura ON factura.`id_factura` = detalle_factura.`id_factura`
+     INNER JOIN `producto` producto ON detalle_factura.`id_producto` = producto.`id_producto`
+WHERE
+     factura.id_factura = $P{id_fact}]]>
+	</queryString>
+	<field name="cliente_id_cliente" class="java.lang.Integer"/>
+	<field name="cliente_nombre" class="java.lang.String"/>
+	<field name="cliente_dni" class="java.lang.String"/>
+	<field name="detalle_factura_id_detalle" class="java.lang.Integer"/>
+	<field name="detalle_factura_id_factura" class="java.lang.Integer"/>
+	<field name="detalle_factura_id_producto" class="java.lang.Integer"/>
+	<field name="detalle_factura_cantidad_vendida" class="java.lang.Integer"/>
+	<field name="detalle_factura_importe" class="java.lang.Float"/>
+	<field name="empleado_Id_empleado" class="java.lang.Integer"/>
+	<field name="empleado_apellido_empleado" class="java.lang.String"/>
+	<field name="factura_id_factura" class="java.lang.Integer"/>
+	<field name="factura_id_cliente" class="java.lang.Integer"/>
+	<field name="factura_id_empleado" class="java.lang.Integer"/>
+	<field name="factura_NCF" class="java.lang.String"/>
+	<field name="factura_DNI" class="java.lang.String"/>
+	<field name="factura_tipo_pago" class="java.lang.String"/>
+	<field name="factura_documento_transaccional" class="java.lang.String"/>
+	<field name="factura_Subtotal" class="java.lang.Float"/>
+	<field name="factura_ITBIS" class="java.lang.Float"/>
+	<field name="factura_Total" class="java.lang.Float"/>
+	<field name="factura_estado_factura" class="java.lang.String"/>
+	<field name="producto_id_producto" class="java.lang.Integer"/>
+	<field name="producto_nombre_producto" class="java.lang.String"/>
+	<field name="producto_presentacion" class="java.lang.String"/>
+	<field name="producto_unidad_precio" class="java.lang.Float"/>
+	<field name="empleado_nombre_empleado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="178" splitType="Stretch">
+			<rectangle>
+				<reportElement x="132" y="23" width="670" height="65" forecolor="#AA0000" backcolor="#AA0000" uuid="38a06554-0e45-4a50-9e9e-6f866d4c6225"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="178" y="23" width="234" height="55" forecolor="#FFFFFF" uuid="a7ce6c8b-8677-4379-9aef-6af4846f0c3f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="44" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Factura No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="103" width="67" height="30" uuid="aef43a23-17ee-4dd9-9ba0-c5437d6f4fc5"/>
+				<textElement>
+					<font fontName="Corbel Light" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="103" width="41" height="30" uuid="6e76d31b-4473-47eb-994b-3714acddd169"/>
+				<textElement>
+					<font fontName="Corbel Light" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NCF:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="224" y="103" width="176" height="30" uuid="0c57e255-6f9d-464d-a2b6-ee049e3d7874"/>
+				<textElement>
+					<font fontName="Corbel Light" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factura_NCF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="511" y="103" width="176" height="30" uuid="7df65032-2419-4689-8fa9-3ec6b88d71e5"/>
+				<textElement>
+					<font fontName="Corbel Light" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_nombre}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="14" y="23" width="100" height="100" uuid="442687cb-9f4f-497f-8392-79d9f711310e"/>
+				<imageExpression><![CDATA["C:\\Users\\18432\\Documents\\NetBeansProjects\\Formulario\\src\\img\\logo.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="412" y="23" width="322" height="55" forecolor="#FFFFFF" uuid="ca2ef496-3292-499b-b63f-33b6e91a48b7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="42" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factura_id_factura}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="440" y="137" width="67" height="30" uuid="b4421dd9-1685-41e2-b041-8ffd3572d489"/>
+				<textElement>
+					<font fontName="Corbel Light" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="511" y="137" width="176" height="30" uuid="72e72d1d-a281-4945-9b97-39969c9119dc"/>
+				<textElement>
+					<font fontName="Corbel Light" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_dni}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="33" forecolor="#AA0000" backcolor="#AA0000" uuid="0670b0d7-786c-4546-a1ae-d62ec18e1a12"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="24" y="0" width="90" height="33" forecolor="#FFFFFF" uuid="416f1b25-beca-419d-9f27-d34caf792504"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="100" height="32" forecolor="#FFFFFF" uuid="f67bad18-a300-4636-8942-064d4f4ce41b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="589" y="1" width="100" height="32" forecolor="#FFFFFF" uuid="bd705e0d-087f-4908-980c-eb4a81f52e44"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="0" width="105" height="31" forecolor="#FFFFFF" uuid="bd6f8ed7-488c-4290-9de1-f957ad4ef4b6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="1" width="130" height="32" forecolor="#FFFFFF" uuid="b215610d-b7a0-4381-a442-bcae125340f2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="24" y="0" width="25" height="32" uuid="5ebffbf9-47d5-4226-9bcf-f04761da7303"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_id_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="1" width="100" height="32" uuid="e76d4877-9427-4db9-80d9-b952942eb6d1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_factura_cantidad_vendida}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00">
+				<reportElement x="314" y="1" width="105" height="32" uuid="599f5587-88ab-4a51-a83a-b59527e2370b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_unidad_precio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00">
+				<reportElement x="590" y="1" width="136" height="32" uuid="a80c29f5-ee1b-4ff9-8c2f-919330985b57"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_factura_importe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="1" width="130" height="32" uuid="7991840a-8673-4e9e-a741-4a0cd81685e9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_nombre_producto}]]></textFieldExpression>
+			</textField>
+			<line direction="BottomUp">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" x="0" y="0" width="1" height="1" forecolor="#006666" uuid="6d7cb2bf-dd9f-4f2b-92b4-0a60b2be0e1a"/>
+			</line>
+			<line>
+				<reportElement mode="Opaque" x="24" y="32" width="702" height="1" forecolor="#999999" uuid="7e93ed53-f59d-45bd-af79-0a861a1556a5"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="135" splitType="Stretch">
+			<textField pattern="$ #,##0.00">
+				<reportElement x="598" y="92" width="190" height="33" uuid="cfb84e8b-ab02-4275-b5eb-3581b41ee83d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factura_Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="500" y="92" width="80" height="33" forecolor="#DB2323" uuid="f429bb69-4e1f-4b8a-b52b-bf301059dcae"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField pattern="$ #,##0.00">
+				<reportElement x="598" y="59" width="190" height="33" uuid="323d3e80-d527-4324-bf76-5ff30eb86097"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factura_ITBIS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="500" y="59" width="80" height="33" forecolor="#DB2323" uuid="81dd0792-3144-426d-afe0-f18e45cc476c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ITBIS]]></text>
+			</staticText>
+			<textField pattern="$ #,##0.00">
+				<reportElement x="598" y="25" width="190" height="33" uuid="6d0d13b9-05fa-4003-a89e-5ab4a26e26f1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factura_Subtotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="500" y="26" width="90" height="33" forecolor="#DB2323" uuid="65ca1cd2-ddf2-428e-8034-bb2dbbe51af5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<line>
+				<reportElement x="265" y="25" width="523" height="1" forecolor="#DB2323" uuid="d45c88b3-2f9d-4edd-bce0-54d25903c5f0"/>
+			</line>
+			<rectangle>
+				<reportElement mode="Opaque" x="80" y="47" width="383" height="0" uuid="f5c8c009-840c-48b4-b1d7-e86092d3a32a"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="78" splitType="Stretch">
+			<textField>
+				<reportElement x="92" y="23" width="22" height="17" uuid="e4d8d6f4-7f87-4947-980d-1e6ca55ec2e4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="23" width="26" height="17" uuid="1fb47860-87bc-4027-b0ac-6fa0509e71d5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="49" y="23" width="43" height="17" forecolor="#666666" uuid="6394c339-f3bc-476e-b126-571d8dd87856"/>
+				<textElement>
+					<font fontName="Corbel Light" size="14" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Página ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="23" width="18" height="17" forecolor="#666666" uuid="5d3f8563-d66a-413c-a4d1-08572aa88e57"/>
+				<textElement>
+					<font fontName="Corbel Light" size="14" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[de ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="504" y="40" width="76" height="17" forecolor="#666666" uuid="acb085fa-1b39-4d24-9654-36a3f7152210"/>
+				<textElement>
+					<font fontName="Corbel Light" size="14" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Generado el:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="598" y="36" width="179" height="21" uuid="bfd94e4a-aedd-4bcf-ab56-c2f20600a5b4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Corbel Light" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="491" y="6" width="89" height="17" forecolor="#666666" uuid="57bc6219-994c-447d-9f8e-1e4f37c645c3"/>
+				<textElement>
+					<font fontName="Corbel Light" size="14"/>
+				</textElement>
+				<text><![CDATA[Facturado por: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="598" y="6" width="179" height="17" uuid="3e0d26f9-38cf-4abc-9738-17f135a190dd"/>
+				<textElement>
+					<font fontName="Corbel Light" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empleado_nombre_empleado}.concat( $F{empleado_apellido_empleado} )]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

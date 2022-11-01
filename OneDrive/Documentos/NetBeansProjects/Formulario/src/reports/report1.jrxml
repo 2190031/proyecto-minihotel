@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0add3712-9e7b-4938-8087-9966ed12948a">
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     detalle_factura.`id_factura` AS detalle_factura_id_factura,
+     detalle_factura.`cif` AS detalle_factura_cif,
+     detalle_factura.`num_cuenta` AS detalle_factura_num_cuenta,
+     detalle_factura.`fecha_factura` AS detalle_factura_fecha_factura,
+     detalle_factura.`direccion` AS detalle_factura_direccion,
+     detalle_factura.`codigo_postal` AS detalle_factura_codigo_postal,
+     detalle_factura.`subtotal` AS detalle_factura_subtotal,
+     detalle_factura.`ITBIS` AS detalle_factura_ITBIS,
+     detalle_factura.`monto_total` AS detalle_factura_monto_total
+FROM
+     `detalle_factura` detalle_factura]]>
+	</queryString>
+	<field name="detalle_factura_id_factura" class="java.lang.Integer"/>
+	<field name="detalle_factura_cif" class="java.lang.String"/>
+	<field name="detalle_factura_num_cuenta" class="java.lang.String"/>
+	<field name="detalle_factura_fecha_factura" class="java.sql.Timestamp"/>
+	<field name="detalle_factura_direccion" class="java.lang.String"/>
+	<field name="detalle_factura_codigo_postal" class="java.lang.String"/>
+	<field name="detalle_factura_subtotal" class="java.lang.Float"/>
+	<field name="detalle_factura_ITBIS" class="java.lang.Float"/>
+	<field name="detalle_factura_monto_total" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="164" height="126" uuid="a9edf9eb-676b-4bcb-bd06-2f37fcf11f51"/>
+				<imageExpression><![CDATA["coffee.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="270" y="0" width="263" height="62" uuid="3d9ec522-b74c-4ed9-b0c8-064f9c8b8715"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Coffee Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="303" y="62" width="196" height="22" uuid="83ff87f9-79d0-4bd6-bf89-430ff3c379cc"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Coffee SubTitle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="94" width="383" height="42" uuid="296270c4-ebae-4fb2-b2c3-8d772234706d"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="633" y="-73" width="219" height="209" uuid="9b740d9c-9f3f-4837-a3f6-604863258a74"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="fe62854f-169e-4b49-b84c-39787d7e6f5a"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="89" height="15" forecolor="#736343" uuid="51d4d512-d4f3-4df3-9ec9-487abaf251d1"/>
+				<text><![CDATA[detalle_factura_id_factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="89" y="0" width="89" height="15" forecolor="#736343" uuid="3008a560-f8c6-4afb-8365-bd6353c6c637"/>
+				<text><![CDATA[detalle_factura_cif]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="178" y="0" width="89" height="15" forecolor="#736343" uuid="72d408c7-f301-48da-bd9d-551cbdd9f070"/>
+				<text><![CDATA[detalle_factura_num_cuenta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="267" y="0" width="89" height="15" forecolor="#736343" uuid="887a2372-e941-49e5-8dfd-ccd527fd7de7"/>
+				<text><![CDATA[detalle_factura_fecha_factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="356" y="0" width="89" height="15" forecolor="#736343" uuid="864bb9e5-e646-49e9-9e9d-075d8c65ed24"/>
+				<text><![CDATA[detalle_factura_direccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="445" y="0" width="89" height="15" forecolor="#736343" uuid="410b54b5-0206-4b8d-b107-477b05038b80"/>
+				<text><![CDATA[detalle_factura_codigo_postal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="534" y="0" width="89" height="15" forecolor="#736343" uuid="649d20dd-59e4-4c61-9fb6-5dccbb429050"/>
+				<text><![CDATA[detalle_factura_subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="623" y="0" width="89" height="15" forecolor="#736343" uuid="7dcbe71b-3a69-4bee-b81c-2783c2919bf9"/>
+				<text><![CDATA[detalle_factura_ITBIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="712" y="0" width="89" height="15" forecolor="#736343" uuid="64c4bf39-6a4e-4ba5-bbb5-c8a0090b54a0"/>
+				<text><![CDATA[detalle_factura_monto_total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="52693f06-90b0-4d84-8dc8-169e740e3620"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="89" height="15" uuid="abe58312-e1ab-402e-82df-312095b1e09c"/>
+					<textFieldExpression><![CDATA[$F{detalle_factura_id_factura}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="89" y="0" width="89" height="15" uuid="35870f6d-8c61-4fb6-a903-682bdc81c397"/>
+					<textFieldExpression><![CDATA[$F{detalle_factura_cif}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="178" y="0" width="89" height="15" uuid="68808fdd-9cef-4865-9f56-ed5ab65d60e6"/>
+					<textFieldExpression><![CDATA[$F{detalle_factura_num_cuenta}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="267" y="0" width="89" height="15" uuid="70b9a259-856d-45b8-b454-d1b03df312f6"/>
+					<textFieldExpression><![CDATA[$F{detalle_factura_fecha_factura}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="356" y="0" width="89" height="15" uuid="010e7a32-cb9c-41b9-9a7b-1b3888045087"/>
+					<textFieldExpression><![CDATA[$F{detalle_factura_direccion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="445" y="0" width="89" height="15" uuid="cbcedc8a-db97-41ea-9fcd-1b1b0cf24acd"/>
+					<textFieldExpression><![CDATA[$F{detalle_factura_codigo_postal}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="534" y="0" width="89" height="15" uuid="1d0fd80a-4093-4b95-9472-1f5b158c2668"/>
+					<textFieldExpression><![CDATA[$F{detalle_factura_subtotal}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="623" y="0" width="89" height="15" uuid="7c5f4cd8-1c5b-49b6-a75d-ce0e4e6043f7"/>
+					<textFieldExpression><![CDATA[$F{detalle_factura_ITBIS}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="712" y="0" width="89" height="15" uuid="1886131c-e3b4-4233-8196-a0ea4ae4258d"/>
+					<textFieldExpression><![CDATA[$F{detalle_factura_monto_total}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="8317b078-3801-4062-ae79-99e1e65837b1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="3f7680b5-9401-4e11-b7e5-9b5169b68da8"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="2f49018b-754d-470c-8190-bca15cf91a76"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="3f98dfd1-f616-4184-9e22-863a8d51a98f"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="d77dd16e-ba9e-4367-b1b5-a5dcabd355a0"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
