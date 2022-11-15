@@ -88,13 +88,11 @@ public class frm_login extends javax.swing.JFrame {
             }
         });
 
-        btn_enter.setBackground(new java.awt.Color(255, 255, 255));
         btn_enter.setFont(new java.awt.Font("Corbel Light", 0, 24)); // NOI18N
         btn_enter.setForeground(new java.awt.Color(51, 51, 51));
         btn_enter.setText("Iniciar sesión");
         btn_enter.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_enter.setFocusPainted(false);
-        btn_enter.setOpaque(false);
         btn_enter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_enterActionPerformed(evt);
@@ -114,7 +112,6 @@ public class frm_login extends javax.swing.JFrame {
         img_user.setForeground(new java.awt.Color(255, 153, 153));
         img_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user.png"))); // NOI18N
 
-        tglbtn_mostrar.setBackground(new java.awt.Color(255, 255, 255));
         tglbtn_mostrar.setForeground(new java.awt.Color(255, 255, 255));
         tglbtn_mostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/visibility1.png"))); // NOI18N
         tglbtn_mostrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());

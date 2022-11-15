@@ -27,9 +27,16 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.HeadlessException;
 import java.text.DecimalFormat;
 import clases.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import static java.time.temporal.TemporalQueries.localDate;
 import java.util.ArrayList;
 import modelo.md_hash;
 import modelo.*;
+import java.util.Date;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class frm_menu extends javax.swing.JFrame {
 
@@ -48,6 +55,7 @@ public class frm_menu extends javax.swing.JFrame {
     DefaultTableModel Cliente;
     DefaultTableModel RepFacturas;
     DefaultTableModel Proveedor;
+    DefaultTableModel FactFiltro;
     Object[] detalle = new Object[5];
     
     c_guardar_factura Factu = new c_guardar_factura();
@@ -72,6 +80,7 @@ public class frm_menu extends javax.swing.JFrame {
         this.RepFacturas = (DefaultTableModel) tbl_repFacturas.getModel();
         this.Cliente = (DefaultTableModel) tbl_cliente.getModel();
         this.Proveedor = (DefaultTableModel) tbl_proveedores.getModel();
+        this.FactFiltro = (DefaultTableModel) tbl_factFiltro.getModel();
         MostrarDatosAlmacen("","");
         MostrarDatosUsuario("","");
         MostrarDatosEmpleado("","");
@@ -79,6 +88,7 @@ public class frm_menu extends javax.swing.JFrame {
         MostrarDatosProveedor("","");
         MostrarTablaRepFactura("");
         MostrarDatosCliente("","");
+        MostrarDatosFactFiltro("");
         //Generar serie de factura
         generarIdFact();
         SetFacturaID();
@@ -117,6 +127,7 @@ public class frm_menu extends javax.swing.JFrame {
         this.RepFacturas = (DefaultTableModel) tbl_repFacturas.getModel();
         this.Cliente = (DefaultTableModel) tbl_cliente.getModel();
         this.Proveedor = (DefaultTableModel) tbl_proveedores.getModel();
+        this.FactFiltro = (DefaultTableModel) tbl_factFiltro.getModel();
         MostrarDatosAlmacen("","");
         MostrarDatosUsuario("","");
         MostrarDatosEmpleado("","");
@@ -124,6 +135,7 @@ public class frm_menu extends javax.swing.JFrame {
         MostrarDatosFactura("");
         MostrarTablaRepFactura("");
         MostrarDatosCliente("","");
+        MostrarDatosFactFiltro("");
         //Generar serie de factura
         generarIdFact();
         SetFacturaID();
@@ -181,6 +193,7 @@ public class frm_menu extends javax.swing.JFrame {
             cbb_categoria_producto.addItem(new c_categoria(listaCategorias.get(i).getId_categoria(), listaCategorias.get(i).getDescripcion_categoria()));
         }
     }
+
     
    //Refrescar ---------------------------------------------------------------------------------------------------------
     public void RefrescarTablaProveedor() {
@@ -265,7 +278,15 @@ public class frm_menu extends javax.swing.JFrame {
         }
     }
     
-
+    public void RefrescarTablaFactFiltro() {
+        try {
+        FactFiltro.setColumnCount(0);
+        FactFiltro.setRowCount(0);
+        tbl_factFiltro.revalidate();
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "error " + ex);
+        }
+    }
     //Limpiar ----------------------------------------------------------------------------------------------------------
     public void LimpiarCamposFactura() {
 
@@ -671,67 +692,67 @@ public class frm_menu extends javax.swing.JFrame {
         }
 
     }
-    
-    public final void MostrarDatosRepFactura(String valor, String tipo) {
-        //Funcion para llenar la jtable de Usuarios desde la BD
-        myConnection cc = new myConnection();
-        Connection cn = myConnection.getConnection();
-        RefrescarTablaEmpleado();
-        Empleado.addColumn("id_empleado");
-        Empleado.addColumn("nombre_empleado");
-        Empleado.addColumn("apellido_empleado");
-        Empleado.addColumn("dni");
-        Empleado.addColumn("telefono");
-        Empleado.addColumn("direccion_empleado");
-        Empleado.addColumn("id_cargo");
-
-        this.tbl_empleado.setModel(Empleado);
-        
-       String sql = "";
-        
-        if( valor.equals("")){
-         sql = "SELECT * FROM empleado";
-         
-        } else {
-         int tipo_filtrar = Integer.parseInt(tipo);
-         switch (tipo_filtrar) {
-            case 0:
-                sql = "SELECT * FROM empleado WHERE id_empleado like '%" + valor + "%'";
-                break;
-            case 1:
-                sql = "SELECT * FROM empleado WHERE nombre_empleado like '%" + valor + "%'";
-                break;
-            case 2:
-                sql = "SELECT * FROM empleado WHERE cant_disponible like '%" + valor + "%'";
-                break;
-            default:
-                break;
-        }
-         
-        }
-
-        String[] datos = new String[7];
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                datos[0] = rs.getString(1);
-                datos[1] = rs.getString(2);
-                datos[2] = rs.getString(3);
-                datos[3] = rs.getString(4);
-
-                datos[4] = rs.getString(5);
-                datos[5] = rs.getString(6);
-                datos[6] = rs.getString(7);
-
-                Empleado.addRow(datos);
-            }
-            tbl_empleado.setModel(Empleado);
-        } catch (SQLException ex) {
-            Logger.getLogger(frm_menu.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "error " + ex);
-        }
-    }
+//    
+//    public final void MostrarDatosRepFactura(String valor, String tipo) {
+//        //Funcion para llenar la jtable de Usuarios desde la BD
+//        myConnection cc = new myConnection();
+//        Connection cn = myConnection.getConnection();
+//        RefrescarTablaEmpleado();
+//        Empleado.addColumn("id_empleado");
+//        Empleado.addColumn("nombre_empleado");
+//        Empleado.addColumn("apellido_empleado");
+//        Empleado.addColumn("dni");
+//        Empleado.addColumn("telefono");
+//        Empleado.addColumn("direccion_empleado");
+//        Empleado.addColumn("id_cargo");
+//
+//        this.tbl_empleado.setModel(Empleado);
+//        
+//       String sql = "";
+//        
+//        if( valor.equals("")){
+//         sql = "SELECT * FROM empleado";
+//         
+//        } else {
+//         int tipo_filtrar = Integer.parseInt(tipo);
+//         switch (tipo_filtrar) {
+//            case 0:
+//                sql = "SELECT * FROM empleado WHERE id_empleado like '%" + valor + "%'";
+//                break;
+//            case 1:
+//                sql = "SELECT * FROM empleado WHERE nombre_empleado like '%" + valor + "%'";
+//                break;
+//            case 2:
+//                sql = "SELECT * FROM empleado WHERE cant_disponible like '%" + valor + "%'";
+//                break;
+//            default:
+//                break;
+//        }
+//         
+//        }
+//
+//        String[] datos = new String[7];
+//        try {
+//            Statement st = cn.createStatement();
+//            ResultSet rs = st.executeQuery(sql);
+//            while (rs.next()) {
+//                datos[0] = rs.getString(1);
+//                datos[1] = rs.getString(2);
+//                datos[2] = rs.getString(3);
+//                datos[3] = rs.getString(4);
+//
+//                datos[4] = rs.getString(5);
+//                datos[5] = rs.getString(6);
+//                datos[6] = rs.getString(7);
+//
+//                Empleado.addRow(datos);
+//            }
+//            tbl_empleado.setModel(Empleado);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(frm_menu.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(null, "error " + ex);
+//        }
+//    }
 
     public final void MostrarDatosProveedor(String valor, String tipo) {
         //Funcion para llenar la jtable de Usuarios desde la BD
@@ -794,7 +815,58 @@ public class frm_menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "error " + ex);
         }
     }
-    
+
+    public final void MostrarDatosFactFiltro(String valor) {
+        myConnection cc = new myConnection();
+        Connection cn = myConnection.getConnection();
+        RefrescarTablaFactFiltro();
+        FactFiltro.addColumn("id_factura");
+        FactFiltro.addColumn("id_cliente");
+        FactFiltro.addColumn("id_empleado");
+        FactFiltro.addColumn("NCF");
+        FactFiltro.addColumn("DNI");
+        FactFiltro.addColumn("tipo_pago");
+        FactFiltro.addColumn("documento_transaccional");
+        FactFiltro.addColumn("subtotal");
+        FactFiltro.addColumn("ITBIS");
+        FactFiltro.addColumn("Total");
+        FactFiltro.addColumn("fecha_compra");
+        FactFiltro.addColumn("estado_factura");
+        this.tbl_factFiltro.setModel(FactFiltro);
+        
+       
+        
+        
+       String sql = "SELECT * FROM factura WHERE Fecha_compra LIKE '______"+ valor +"____________'";
+         
+        // INCLUIR MENSAJE CUANDO NO HAY RESULTADOS
+
+        String[] datos = new String[12];
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                datos[5] = rs.getString(6);
+                datos[6] = rs.getString(7);
+                datos[7] = rs.getString(8);
+                datos[8] = rs.getString(9);
+                datos[9] = rs.getString(10);
+                datos[10] = rs.getString(11);
+                datos[11] = rs.getString(12);
+                
+                FactFiltro.addRow(datos);
+            }
+            tbl_factFiltro.setModel(FactFiltro);
+        } catch (SQLException ex) {
+            Logger.getLogger(frm_menu.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "error " + ex);
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -985,7 +1057,7 @@ public class frm_menu extends javax.swing.JFrame {
         btn_reporte_empleado1 = new javax.swing.JButton();
         t_reporte = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_factFiltro = new javax.swing.JTable();
         rep_fecha = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         btn_log_out = new javax.swing.JLabel();
@@ -2342,7 +2414,7 @@ public class frm_menu extends javax.swing.JFrame {
                         .addComponent(btn_añadir_prod, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                         .addComponent(btn_borrar_prod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_editar_prod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout t_almacenLayout = new javax.swing.GroupLayout(t_almacen);
@@ -2777,9 +2849,8 @@ public class frm_menu extends javax.swing.JFrame {
 
         jScrollPane8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setFont(new java.awt.Font("Corbel Light", 0, 22)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(219, 35, 35));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_factFiltro.setFont(new java.awt.Font("Corbel Light", 0, 22)); // NOI18N
+        tbl_factFiltro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -2790,13 +2861,18 @@ public class frm_menu extends javax.swing.JFrame {
 
             }
         ));
-        jTable1.setToolTipText("");
-        jTable1.setGridColor(new java.awt.Color(255, 204, 204));
-        jTable1.setSelectionBackground(new java.awt.Color(255, 51, 51));
-        jScrollPane8.setViewportView(jTable1);
+        tbl_factFiltro.setToolTipText("");
+        tbl_factFiltro.setGridColor(new java.awt.Color(255, 204, 204));
+        tbl_factFiltro.setSelectionBackground(new java.awt.Color(255, 51, 51));
+        jScrollPane8.setViewportView(tbl_factFiltro);
 
         rep_fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM-yyyy"))));
         rep_fecha.setFont(new java.awt.Font("Corbel Light", 0, 28)); // NOI18N
+        rep_fecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rep_fechaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Corbel Light", 0, 28)); // NOI18N
         jLabel1.setText("Fecha");
@@ -4172,7 +4248,6 @@ public class frm_menu extends javax.swing.JFrame {
     private void txt_filtro_proveedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filtro_proveedorKeyReleased
         // TODO add your handling code here:
         try {
-
             String B = txt_filtro_proveedor.getText();
             int A = Filtro_prov.getSelectedIndex();
             String A1 = String.valueOf(A);
@@ -4194,6 +4269,33 @@ public class frm_menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "error " + ex);
         }
     }//GEN-LAST:event_txt_filtro_proveedorKeyTyped
+
+    private void rep_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rep_fechaActionPerformed
+        try {                                          
+            // TODO add your handling code here:
+            String fecha_filtro = rep_fecha.getText();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            Date date = formatter.parse(fecha_filtro);
+            
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            int month = cal.get(Calendar.MONTH);
+            
+            try {
+                
+                int A = month+1;
+                String A1 = String.valueOf(A);
+                System.out.println(A1);
+                MostrarDatosFactFiltro(A1);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "error " + ex);
+            }
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(frm_menu.class.getName()).log(Level.SEVERE,null, ex);
+        }
+        
+    }//GEN-LAST:event_rep_fechaActionPerformed
 
     void guardarFactura() {
         int id_emp = id_empleado;
@@ -4441,7 +4543,6 @@ public class frm_menu extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_afiliacion_client;
     private javax.swing.JLabel lbl_afiliacion_usuario;
     private javax.swing.JLabel lbl_afiliacion_usuario1;
@@ -4524,6 +4625,7 @@ public class frm_menu extends javax.swing.JFrame {
     private javax.swing.JTable tbl_cliente;
     private javax.swing.JTable tbl_detalle;
     private javax.swing.JTable tbl_empleado;
+    private javax.swing.JTable tbl_factFiltro;
     private javax.swing.JTable tbl_proveedores;
     private javax.swing.JTable tbl_repFacturas;
     private javax.swing.JTable tbl_usuario;
